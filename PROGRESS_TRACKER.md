@@ -123,7 +123,7 @@
 
 ### [P0.5] Template de Progression (ce fichier)
 - **État**: [x]
-- **Dernier commit**: 4103790 (docs: add project planning documents)
+- **Dernier commit**: dbb5d4c (docs: update progress tracker with initial commit)
 - **Branch/PR**: N/A
 - **Prochain step**: Mettre à jour après chaque tâche
 - **Tests passants**: [x] Documentation
@@ -551,6 +551,10 @@
 - ✅ Commit 4103790: docs: add project planning documents
 - ✅ 7 fichiers ajoutés (.gitignore, PRD.md, DESIGN.md, TECH_SPECS.md, PLANNING.md, PROGRESS_TRACKER.md, doc_api_france_travail.json)
 - 📊 Métriques : 45 tâches totales, 1 complétée (2%), 0 en cours
+### 27 janvier 2026 - Mise à jour Tracker
+- ✅ Commit dbb5d4c: docs: update progress tracker with initial commit
+- ✅ Mise à jour P0.5 avec nouveau hash commit
+- ✅ Métriques mises à jour : 1 tâche complétée (2%)
 
 ### Prochaine Mise à Jour Planifiée
 - **Date** : Après démarrage Phase 0
