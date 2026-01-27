@@ -55,7 +55,7 @@
 
 ### Métriques de Progression
 - **Tâches totales** : 45
-- **Tâches complétées** : 0 (0%)
+- **Tâches complétées** : 1 (2%)
 - **Tâches en cours** : 0
 - **Tâches bloquées** : 0
 - **Couverture code actuelle** : 0%
@@ -123,7 +123,7 @@
 
 ### [P0.5] Template de Progression (ce fichier)
 - **État**: [x]
-- **Dernier commit**: Initial creation
+- **Dernier commit**: 4103790 (docs: add project planning documents)
 - **Branch/PR**: N/A
 - **Prochain step**: Mettre à jour après chaque tâche
 - **Tests passants**: [x] Documentation
@@ -513,13 +513,13 @@
 ### Métriques Hebdomadaires
 | Semaine | Tâches Terminées | Tâches Ajoutées | Couverture Code | Bugs Ouverts | Blocages |
 |---------|------------------|-----------------|-----------------|--------------|----------|
-| Semaine 1 | 0 | 0 | 0% | 0 | 0 |
+| Semaine 1 | 1 | 0 | 0% | 0 | 0 |
 | Semaine 2 | 0 | 0 | 0% | 0 | 0 |
 | *Mettre à jour chaque vendredi* | | | | | |
 
 ### Velocity Tracking
 - **Velocity estimée** : 5-7 tâches/semaine (temps plein)
-- **Velocity actuelle** : 0 tâches/semaine
+- **Velocity actuelle** : 1 tâche/semaine
 - **Buffer planning** : 2 semaines (14% du temps total)
 - **Risque de retard** : Faible (planning conservateur)
 
@@ -545,6 +545,11 @@
 - ✅ Création du fichier PROGRESS_TRACKER.md
 - ✅ Structure initiale avec toutes les tâches du PLANNING.md
 - ✅ Toutes les tâches marquées TODO sauf P0.5 (création fichier)
+- 📊 Métriques : 45 tâches totales, 1 complétée (2%), 0 en cours
+
+### 27 janvier 2026 - Premier Commit
+- ✅ Commit 4103790: docs: add project planning documents
+- ✅ 7 fichiers ajoutés (.gitignore, PRD.md, DESIGN.md, TECH_SPECS.md, PLANNING.md, PROGRESS_TRACKER.md, doc_api_france_travail.json)
 - 📊 Métriques : 45 tâches totales, 1 complétée (2%), 0 en cours
 
 ### Prochaine Mise à Jour Planifiée
