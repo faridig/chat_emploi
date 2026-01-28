@@ -63,7 +63,7 @@ jobs:
       - name: Install frontend dependencies
         run: |
           cd frontend
-          npm ci
+          npm install
       
       - name: Build and publish Tauri application
         uses: tauri-apps/tauri-action@v0
