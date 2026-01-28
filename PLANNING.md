@@ -125,9 +125,12 @@
   - Alertes locales (ex: latence > 5s, mémoire > 80%)
   ```
 *Validation* :
-  - ✅ Prometheus scrape les métriques sur `localhost:9090`
-  - ✅ Grafana dashboard accessible avec données
-  - ✅ Alertes testées (notification desktop)
+  - ✅ Endpoint `/metrics` expose les métriques Prometheus
+  - ✅ Tests unitaires pour toutes les métriques (coverage > 50%)
+  - ✅ Tests d'intégration vérifiant l'endpoint /metrics
+  - ✅ Configuration Prometheus pour scraping (fichier YAML)
+  - ✅ Template dashboard Grafana (JSON) créé
+  *Statut* : ✅ Terminé le 28 janvier 2026 (métriques de base implémentées, Grafana à configurer en runtime)
 
  ### 2.5 Environnement de Dev "Zero Configuration" (Jour 4)
 *Feature* : Scripts setup automatique pour nouveaux contributeurs

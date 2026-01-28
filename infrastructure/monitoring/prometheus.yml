@@ -1,0 +1,39 @@
+# Configuration Prometheus pour Chat Emploi
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'chat-emploi'
+    environment: 'local'
+
+# Règles d'alerte (optionnel pour MVP)
+rule_files:
+  # - "alerts.yml"
+
+scrape_configs:
+  # Métriques de l'application Chat Emploi
+  - job_name: 'chat-emploi-backend'
+    static_configs:
+      - targets: ['localhost:8000']
+        labels:
+          service: 'backend'
+          component: 'fastapi'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+    scrape_timeout: 5s
+
+  # Métriques du système (node exporter - optionnel)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['localhost:9100']
+        labels:
+          service: 'system'
+          component: 'node'
+    scrape_interval: 30s
+
+# Configuration Alertmanager (optionnel)
+#alerting:
+#  alertmanagers:
+#  - static_configs:
+#    - targets:
+#      - localhost:9093
