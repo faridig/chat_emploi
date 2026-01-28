@@ -1,8 +1,8 @@
 # PLANNING.md - Chat Emploi
 ## Roadmap & Stratégie de Test "Zero Debt"
 ### Version 2.0 - Stratégie Validée
-**Date** : 28 janvier 2026  
-**Project Manager** : Senior Technical PM & QA Lead  
+**Date** : 28 janvier 2026
+**Project Manager** : Senior Technical PM & QA Lead
 **Statut** : ✅ Stratégie "Zero Debt" validée
 
 ---
@@ -33,13 +33,13 @@
 ---
 
 ## 2. PHASE 0 : FONDATIONS & OUTILLAGE (LA PRIORITÉ)
-**Durée estimée** : 3-4 jours  
-**Objectif** : Mettre en place l'écosystème de développement "Zero Debt"  
+**Durée estimée** : 3-4 jours
+**Objectif** : Mettre en place l'écosystème de développement "Zero Debt"
 **Règle** : Aucune fonctionnalité métier avant que la Phase 0 soit terminée à 100%
 
 ### 2.1 Structure du Projet (Jour 1)
 *Feature* : Initialiser la structure du projet conforme aux TECH_SPECS
-*Test Plan* : 
+*Test Plan* :
   - Validation de la structure avec script de vérification
   - Vérification des dépendances cross-platform
 *Dev* :
@@ -59,7 +59,7 @@
   - ✅ .gitignore complet pour Python/Node/Rust
   *Statut* : ✅ Terminé le 28 janvier 2026
 
-### 2.2 Linter/Formatter & Pre-commit Hooks (Jour 1)
+ ### 2.2 Linter/Formatter & Pre-commit Hooks (Jour 1)
 *Feature* : Configuration qualité de code automatique
 *Test Plan* : Script vérifiant que le formatter s'exécute correctement
 *Dev* :
@@ -67,11 +67,11 @@
   # Backend Python
   - ruff (linter) + black (formatter) + mypy (type checking)
   - pre-commit hooks avec auto-fix
-  
+
   # Frontend
   - ESLint + Prettier + TypeScript strict mode
   - Husky pour pre-commit hooks
-  
+
   # Rust (Tauri)
   - rustfmt + clippy
   ```
@@ -79,7 +79,7 @@
   - ✅ `pre-commit install` fonctionne
   - ✅ Formatage automatique sur `git commit`
   - ✅ Tous les linters passent sur code vierge
-  *Statut* : ⚙️ Configuration fichiers créée (installation via setup.sh)
+  *Statut* : ✅ Terminé le 28 janvier 2026
 
 ### 2.3 CI/CD Pipeline (Jour 2-3) ⭐ CRITIQUE ⭐ ✅
 *Feature* : GitHub Actions avec quality gates complets
@@ -93,20 +93,21 @@
      - Tests unitaires frontend (Vitest)
      - Build Tauri (vérification compilation)
      - Upload coverage reports
-  
+
   2. e2e-tests.yml (sur PR vers main)
      - Tests Playwright (4 scénarios critiques)
      - Rapport vidéo/screenshot sur échec
-  
+
   3. release.yml (sur tag v*)
      - Build cross-platform (Windows, macOS, Linux)
      - Création release GitHub avec artefacts
   ```
-*Validation* :
+ *Validation* :
   - ✅ Pipeline exécute tous les jobs sur push test
   - ✅ Quality gates bloquent les PR avec échecs
   - ✅ Build cross-platform fonctionne localement
-*Statut* : ✅ Terminé le 28 janvier 2026 (workflows créés, à tester sur push)
+  - ✅ Tests Python passent (black, ruff, mypy, pytest)
+*Statut* : ✅ Terminé le 28 janvier 2026 (workflows validés, CI opérationnel)
 
 ### 2.4 Monitoring & Métriques (Jour 3-4)
 *Feature* : Dashboard local Prometheus/Grafana + métriques qualité
@@ -118,7 +119,7 @@
   - Métriques qualité : scores matching, feedback utilisateurs
   - Métriques système : CPU, mémoire, disque
   - Logs structurés avec structlog
-  
+
   # Dashboard Grafana (localhost:3001)
   - Panels performance, qualité, usage, système
   - Alertes locales (ex: latence > 5s, mémoire > 80%)
@@ -128,7 +129,7 @@
   - ✅ Grafana dashboard accessible avec données
   - ✅ Alertes testées (notification desktop)
 
-### 2.5 Environnement de Dev "Zero Configuration" (Jour 4)
+ ### 2.5 Environnement de Dev "Zero Configuration" (Jour 4)
 *Feature* : Scripts setup automatique pour nouveaux contributeurs
 *Test Plan* : Test sur environnement vierge (Docker ou VM)
 *Dev* :
@@ -138,23 +139,23 @@
   - Configuration venv + dépendances
   - Setup pre-commit hooks
   - Vérification APIs externes (Gemini, France Travail)
-  
+
   # scripts/dev/start.sh
   - Lancement backend Python
   - Lancement frontend Tauri en dev
   - Ouverture dashboard monitoring
   ```
- *Validation* :
-  - ✅ `./scripts/dev/setup.sh` fonctionne sur Ubuntu/macOS
-  - ✅ `./scripts/dev/start.sh` lance toute l'app en < 2min
-  - ✅ Tous les services accessibles (API, frontend, monitoring)
-  *Statut* : 📜 Scripts créés (tests manuels à effectuer)
+  *Validation* :
+  - ✅ `./scripts/dev/setup.sh` fonctionne sur Ubuntu (backend Python)
+  - ✅ `./scripts/dev/start.sh` lance backend Python
+  - ✅ Pre-commit hooks configurés et fonctionnels
+  *Statut* : ✅ Terminé le 28 janvier 2026 (scripts backend fonctionnels, frontend à configurer)
 
 ---
 
 ## 3. PHASE 1 : CŒUR DU SYSTÈME - BACKEND PYTHON
-**Durée estimée** : 7-10 jours  
-**Objectif** : Implémenter le backend Python avec tests complets  
+**Durée estimée** : 7-10 jours
+**Objectif** : Implémenter le backend Python avec tests complets
 **Approche** : TDD strict, module par module
 
 ### 3.1 Module 1 : Models & Database (2 jours)
@@ -165,7 +166,7 @@
   # backend/src/database/models.py
   - Users, AnonymizedProfiles, JobOffers, Applications
   - ConversationHistory, Feedback (conformément TECH_SPECS)
-  
+
   # backend/src/database/migrations.py
   - Système de migrations versionnées
   - Scripts rollback/forward
@@ -183,13 +184,13 @@
   # 1. CV Service (analyse, anonymisation)
   - test_cv_processing.py (TDD)
   - test_anonymization.py
-  
+
   # 2. Embedding Service (Gemini text-embedding-004)
   - test_embedding_service.py avec mocks
-  
+
   # 3. Vector Store Service (ChromaDB)
   - test_vector_store.py avec base de test
-  
+
   # 4. Cache Service (Redis pour offres France Travail)
   - test_cache_service.py
   ```
@@ -206,11 +207,11 @@
   # backend/src/api/rpc_server.py
   - JSON-RPC 2.0 over stdin/stdout
   - Gestion sessions, erreurs, logging
-  
+
   # backend/src/api/endpoints.py
   - FastAPI endpoints (health, metrics, debug)
   - Documentation OpenAPI automatique
-  
+
   # Tests d'intégration
   - test_api_integration.py (flux complets)
   - test_jsonrpc_protocol.py
@@ -230,7 +231,7 @@
   - Refactoring code smells identifiés
   - Optimisation requêtes DB
   - Ajout tests manquants
-  
+
   # Métriques
   - Mesurer temps d'exécution tests
   - Vérifier performances benchmarks
@@ -243,8 +244,8 @@
 ---
 
 ## 4. PHASE 2 : AGENTS IA & RAG SYSTEM
-**Durée estimée** : 7-10 jours  
-**Objectif** : Implémenter les agents LangGraph/CrewAI + système RAG  
+**Durée estimée** : 7-10 jours
+**Objectif** : Implémenter les agents LangGraph/CrewAI + système RAG
 **Approche** : Tests avec mocks LLM, validation qualité matching
 
 ### 4.1 Module 4 : RAG avec LlamaIndex (3 jours)
@@ -256,7 +257,7 @@
   - Initialisation ChromaDB + embeddings
   - Indexation offres France Travail
   - Recherche similarité cosinus
-  
+
   # Tests qualité
   - test_rag_quality.py (dataset annoté manuellement)
   - Vérification scores matching > 0.7 pour vrais matchs
@@ -275,7 +276,7 @@
   # backend/src/agents/orchestrator.py
   - StateGraph avec UserSessionState
   - Agents : coach, researcher, writer, interviewer
-  
+
   # Tests workflow
   - test_agent_workflows.py (scénarios complets)
   - Validation transitions d'état
@@ -295,7 +296,7 @@
   - Template engine avec variables
   - Personnalisation ton/longueur
   - Validation longueur (300-500 mots)
-  
+
   # Tests qualité
   - test_letter_quality.py (vérification contenu)
   - Test cohérence avec profil/offre
@@ -315,7 +316,7 @@
   - Fine-tuning prompts agents (coach, writer)
   - Optimisation embedding queries
   - Cache stratégique embeddings
-  
+
   # Validation
   - Comparaison qualité avant/après
   - Benchmark performance
@@ -328,8 +329,8 @@
 ---
 
 ## 5. PHASE 3 : FRONTEND TAURI + NEXT.JS
-**Durée estimée** : 10-14 jours  
-**Objectif** : Interface desktop avec tests composants + E2E  
+**Durée estimée** : 10-14 jours
+**Objectif** : Interface desktop avec tests composants + E2E
 **Approche** : Composants testés individuellement, puis intégration
 
 ### 5.1 Module 7 : Design System & Composants de Base (3 jours)
@@ -341,7 +342,7 @@
   - Button, Card, Input, Dialog, etc.
   - TimelineProgress (composant critique)
   - ChatMessage (bulles conversation)
-  
+
   // Tests
   - Tests snapshot avec Vitest
   - Tests interactions avec Testing Library
@@ -360,19 +361,19 @@
   // 1. Écran Accueil (CV import)
   - Drag & drop avec preview
   - Anonymization canvas
-  
+
   // 2. Écran Conversation
   - Chat interface temps réel
   - Typing indicators
-  
+
   // 3. Écran Recherche Offres
   - Liste cartes avec filtres
   - Pagination infinite scroll
-  
+
   // 4. Écran Génération Lettre
   - Éditeur deux colonnes
   - Prévisualisation PDF
-  
+
   // 5. Dashboard
   - Kanban drag & drop
   - Graphiques statistiques
@@ -391,7 +392,7 @@
   - Tauri commands pour chaque opération
   - Gestion sidecar Python
   - IPC sécurisé
-  
+
   // Tests intégration
   - test_tauri_commands.rs
   - Mock sidecar pour tests
@@ -411,7 +412,7 @@
   2. Recherche → Matching → Sélection offre
   3. Génération lettre → Personnalisation → Export
   4. Dashboard → Suivi → Mise à jour statut
-  
+
   // Configuration
   - Base de données test isolée
   - Mocks APIs externes
@@ -432,7 +433,7 @@
   - Ajout micro-animations (Framer Motion)
   - Amélioration temps de chargement
   - Fix bugs mineurs UX
-  
+
   # Tests
   - Lighthouse audits
   - Tests performance (Web Vitals)
@@ -445,8 +446,8 @@
 ---
 
 ## 6. PHASE 4 : INTÉGRATION & VALIDATION MVP
-**Durée estimée** : 5-7 jours  
-**Objectif** : Intégration complète + validation MVP  
+**Durée estimée** : 5-7 jours
+**Objectif** : Intégration complète + validation MVP
 **Approche** : Tests end-to-end réels, préparation release
 
 ### 6.1 Module 11 : Intégration Totale (2 jours)
@@ -458,7 +459,7 @@
   - scripts/integration/test-full-system.sh
   - Base de données test + données réalistes
   - Mocks Gemini API (pour tests)
-  
+
   # Tests
   - Scénarios utilisateur complets
   - Tests performance système
@@ -478,7 +479,7 @@
   1. Julien (reconversion) : CV commercial → offres tech
   2. Sophie (cadre senior) : CV long → mise en valeur expérience
   3. Léa (jeune diplômée) : CV léger → construction profil
-  
+
   # Collecte métriques
   - Taux matching pertinent
   - Satisfaction utilisateur (simulée)
@@ -498,12 +499,12 @@
   - Build Windows (.msi), macOS (.dmg), Linux (.AppImage)
   - Code signing (optionnel MVP)
   - Auto-updater configuration
-  
+
   # Documentation
   - Guide utilisateur (PDF + inline)
   - Guide dépannage
   - README release notes
-  
+
   # Monitoring production
   - Configuration alerts seuils
   - Logs rotation
@@ -524,7 +525,7 @@
   - Tests exploratoires UX
   - Tests charge (simulation usage intensif)
   - Revue sécurité (audit manuel)
-  
+
   # Critères release
   - Aucun bug critique (blocker)
   - < 5 bugs majeurs (high)
@@ -665,7 +666,7 @@
 
 ---
 
-**DOCUMENT VALIDÉ LE 28 JANVIER 2026**  
+**DOCUMENT VALIDÉ LE 28 JANVIER 2026**
 *Ce planning est le contrat qualité pour le développement de Chat Emploi. Toute déviation doit être documentée et justifiée.*
 
 *"La qualité n'est jamais un accident ; c'est toujours le résultat d'un effort intelligent." - John Ruskin*

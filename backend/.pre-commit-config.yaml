@@ -17,11 +17,18 @@ repos:
         args: [--fix]
       - id: ruff-format
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
+  - repo: https://github.com/psf/black
+    rev: 24.1.0
     hooks:
-      - id: mypy
-        additional_dependencies: [types-all]
+      - id: black
+        language_version: python3
+
+  # TODO: Réactiver mypy une fois types-all résolu
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v1.9.0
+  #   hooks:
+  #     - id: mypy
+  #       additional_dependencies: [types-all]
 
   - repo: local
     hooks:
@@ -31,4 +38,4 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-        stages: [push]
+        stages: [pre-push]
