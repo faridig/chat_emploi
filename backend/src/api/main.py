@@ -1,6 +1,8 @@
 """Point d'entrée principal FastAPI."""
+
 import logging
 from contextlib import asynccontextmanager
+from typing import AsyncIterator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Gestion du cycle de vie de l'application."""
     # Startup
     logger.info("Starting Chat Emploi backend...")
@@ -39,12 +41,12 @@ app.add_middleware(
 
 
 @app.get("/")
-async def root():
+async def root() -> dict[str, str]:
     """Endpoint racine."""
     return {"message": "Chat Emploi Backend API", "version": "0.1.0"}
 
 
 @app.get("/health")
-async def health():
+async def health() -> dict[str, str]:
     """Endpoint de santé."""
     return {"status": "healthy"}
