@@ -1,0 +1,83 @@
+# Règles d'alerte Prometheus pour Chat Emploi
+groups:
+  - name: performance_alerts
+    rules:
+      - alert: HighAPILatency
+        expr: histogram_quantile(0.95, rate(api_latency_seconds_bucket[5m])) > 5
+        for: 2m
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "API latency above 5 seconds (95th percentile)"
+          description: "Endpoint {{ $labels.endpoint }} has high latency ({{ $value }}s)"
+
+      - alert: HighMemoryUsage
+        expr: memory_usage_bytes{type="rss"} / (1024 * 1024) > 500
+        for: 3m
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "High memory usage (> 500MB)"
+          description: "Application using {{ $value }}MB of memory"
+
+      - alert: HighCPUUsage
+        expr: cpu_usage_percent{core="total"} > 80
+        for: 3m
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "High CPU usage (> 80%)"
+          description: "CPU usage at {{ $value }}%"
+
+      - alert: LowMatchQuality
+        expr: match_score_current < 0.5
+        for: 10m
+        labels:
+          severity: info
+          service: matching
+        annotations:
+          summary: "Low match quality (< 50%)"
+          description: "Current match score is {{ $value }}"
+
+      - alert: NoCVProcessed
+        expr: rate(cv_processed[1h]) == 0
+        for: 1h
+        labels:
+          severity: info
+          service: usage
+        annotations:
+          summary: "No CVs processed in the last hour"
+          description: "Application idle for 1 hour"
+
+      - alert: HighErrorRate
+        expr: rate(api_latency_seconds_count{status_code=~"5.."}[5m]) / rate(api_latency_seconds_count[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+          service: backend
+        annotations:
+          summary: "High error rate (> 10%)"
+          description: "{{ $value }}% of requests are failing"
+
+      - alert: ServiceDown
+        expr: up{job="chat-emploi-backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: backend
+        annotations:
+          summary: "Backend service is down"
+          description: "Prometheus cannot scrape metrics from backend"
+
+      - alert: DiskSpaceLow
+        expr: (disk_usage_bytes{path="data"} / disk_usage_bytes{path="data_total"}) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          service: system
+        annotations:
+          summary: "Low disk space (> 90% used)"
+          description: "Data directory is {{ $value }}% full"

@@ -6,9 +6,9 @@ global:
     monitor: 'chat-emploi'
     environment: 'local'
 
-# Règles d'alerte (optionnel pour MVP)
+# Règles d'alerte
 rule_files:
-  # - "alerts.yml"
+  - "alerts.yml"
 
 scrape_configs:
   # Métriques de l'application Chat Emploi
