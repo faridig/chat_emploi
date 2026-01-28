@@ -1,0 +1,14 @@
+{
+  "name": "chat-emploi-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "tauri": "tauri",
+    "test": "echo 'Tests not yet implemented' && exit 0",
+    "test:e2e": "echo 'E2E tests not yet implemented' && exit 0"
+  }
+}
