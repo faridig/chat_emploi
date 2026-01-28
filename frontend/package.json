@@ -10,5 +10,32 @@
     "tauri": "tauri",
     "test": "echo 'Tests not yet implemented' && exit 0",
     "test:e2e": "echo 'E2E tests not yet implemented' && exit 0"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "tailwindcss": "^4.0.0",
+    "lucide-react": "^0.475.0",
+    "zod": "^3.24.2",
+    "@tanstack/react-query": "^5.65.0",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "15.1.0",
+    "postcss": "^8.5.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "jsdom": "^25.0.1",
+    "@playwright/test": "^1.50.0"
   }
 }
