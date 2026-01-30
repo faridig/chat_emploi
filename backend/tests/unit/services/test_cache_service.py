@@ -9,8 +9,7 @@ from unittest.mock import MagicMock, Mock, patch
 
 import pytest
 import redis
-
-from src.services.cache.cache_service import CacheError, CacheService
+from services.cache.cache_service import CacheError, CacheService
 
 
 class TestCacheService:
@@ -19,7 +18,7 @@ class TestCacheService:
     @pytest.fixture
     def mock_redis(self):
         """Mock Redis client."""
-        with patch("src.services.cache.cache_service.redis") as mock_redis_module:
+        with patch("services.cache.cache_service.redis") as mock_redis_module:
             # Mock Redis client
             mock_client = Mock()
 
@@ -536,7 +535,7 @@ class TestCacheService:
 
         # Mock redis.Redis.from_url to raise connection error
         with patch(
-            "src.services.cache.cache_service.redis.Redis.from_url"
+            "services.cache.cache_service.redis.Redis.from_url"
         ) as mock_from_url:
             mock_client = MagicMock()
             mock_client.ping.side_effect = Exception("Connection failed")
@@ -545,7 +544,7 @@ class TestCacheService:
             # Act & Assert
             try:
                 CacheService(redis_url=invalid_redis_url)
-                assert False, "Should have raised CacheError"
+                raise AssertionError("Should have raised CacheError")
             except CacheError as e:
                 assert "Failed to connect to Redis" in str(e)
 

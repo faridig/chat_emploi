@@ -1,8 +1,7 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
-
-from src.services.letter_generator import LetterGenerationError, LetterGeneratorService
+from services.letter_generator import LetterGenerationError, LetterGeneratorService
 
 
 class TestLetterGeneratorService:
@@ -56,7 +55,7 @@ class TestLetterGeneratorService:
             assert "Jean Dupont" in html
             mock_template.render.assert_called_once()
 
-    @patch("src.services.letter_generator.HTML")
+    @patch("services.letter_generator.HTML")
     def test_generate_pdf(self, mock_html_cls, service, tmp_path):
         """Test de la génération PDF via WeasyPrint"""
         html_content = "<html><body>Test</body></html>"
@@ -101,7 +100,7 @@ class TestLetterGeneratorService:
 
     def test_generate_full_process(self, service, sample_data, tmp_path):
         """Test d'intégration du service complet (mockant juste WeasyPrint)"""
-        with patch("src.services.letter_generator.HTML") as mock_html_cls:
+        with patch("services.letter_generator.HTML") as mock_html_cls:
             mock_html_instance = MagicMock()
             mock_html_cls.return_value = mock_html_instance
 

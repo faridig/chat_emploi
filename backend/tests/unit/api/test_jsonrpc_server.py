@@ -6,8 +6,7 @@ from io import StringIO
 from unittest.mock import patch
 
 import pytest
-
-from src.api.jsonrpc_server import JSONRPCError, JSONRPCServer
+from api.jsonrpc_server import JSONRPCError, JSONRPCServer
 
 
 class TestJSONRPCServer:

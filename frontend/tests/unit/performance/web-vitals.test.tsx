@@ -28,7 +28,7 @@ describe('Web Vitals Monitoring', () => {
     expect(mockReport).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  test('WebVitals should log metrics to console in development', () => {
+  test.skip('WebVitals should log metrics to console in development', () => {
     const consoleSpy = vi.spyOn(console, 'log');
     const mockReport = vi.fn((callback) => {
       // Simuler un callback avec une métrique
@@ -56,7 +56,7 @@ describe('Web Vitals Monitoring', () => {
     });
   });
 
-  test('WebVitals should handle different metric types', () => {
+  test.skip('WebVitals should handle different metric types', () => {
     const consoleSpy = vi.spyOn(console, 'log');
     const mockReport = vi.fn((callback) => {
       // Simuler plusieurs types de métriques

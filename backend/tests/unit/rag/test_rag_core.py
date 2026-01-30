@@ -9,8 +9,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
-
-from src.rag.core import (
+from rag.core import (
     CollectionType,
     CVProfile,
     EmbeddingModel,
@@ -20,8 +19,8 @@ from src.rag.core import (
     RAGError,
     RAGSystem,
 )
-from src.services.embedding.embedding_service import EmbeddingService
-from src.services.vector_store.vector_store_service import VectorStoreService
+from services.embedding.embedding_service import EmbeddingService
+from services.vector_store.vector_store_service import VectorStoreService
 
 # ============================================================================
 # FIXTURES
@@ -151,8 +150,8 @@ def sample_cv_profile():
 def rag_system(mock_embedding_service, mock_vector_store):
     """RAGSystem with mocked dependencies."""
     with (
-        patch("src.rag.core.EmbeddingService", return_value=mock_embedding_service),
-        patch("src.rag.core.VectorStoreService", return_value=mock_vector_store),
+        patch("rag.core.EmbeddingService", return_value=mock_embedding_service),
+        patch("rag.core.VectorStoreService", return_value=mock_vector_store),
     ):
         system = RAGSystem(
             embedding_api_key="test_api_key",
@@ -334,8 +333,8 @@ class TestRAGSystemInitialization:
     def test_init_default_config(self, mock_embedding_service, mock_vector_store):
         """Test RAGSystem initialization with default config."""
         with (
-            patch("src.rag.core.EmbeddingService", return_value=mock_embedding_service),
-            patch("src.rag.core.VectorStoreService", return_value=mock_vector_store),
+            patch("rag.core.EmbeddingService", return_value=mock_embedding_service),
+            patch("rag.core.VectorStoreService", return_value=mock_vector_store),
         ):
             system = RAGSystem(embedding_api_key="test_key")
 
@@ -356,8 +355,8 @@ class TestRAGSystemInitialization:
         )
 
         with (
-            patch("src.rag.core.EmbeddingService", return_value=mock_embedding_service),
-            patch("src.rag.core.VectorStoreService", return_value=mock_vector_store),
+            patch("rag.core.EmbeddingService", return_value=mock_embedding_service),
+            patch("rag.core.VectorStoreService", return_value=mock_vector_store),
         ):
             system = RAGSystem(embedding_api_key="test_key", config=custom_config)
 
@@ -368,8 +367,8 @@ class TestRAGSystemInitialization:
     def test_init_embedding_service_failure(self):
         """Test RAGSystem initialization when EmbeddingService fails."""
         with (
-            patch("src.rag.core.EmbeddingService", side_effect=Exception("API error")),
-            patch("src.rag.core.VectorStoreService"),
+            patch("rag.core.EmbeddingService", side_effect=Exception("API error")),
+            patch("rag.core.VectorStoreService"),
         ):
             with pytest.raises(RAGError, match="Failed to initialize RAG system"):
                 RAGSystem(embedding_api_key="test_key")
@@ -377,8 +376,8 @@ class TestRAGSystemInitialization:
     def test_init_vector_store_failure(self, mock_embedding_service):
         """Test RAGSystem initialization when VectorStoreService fails."""
         with (
-            patch("src.rag.core.EmbeddingService", return_value=mock_embedding_service),
-            patch("src.rag.core.VectorStoreService", side_effect=Exception("DB error")),
+            patch("rag.core.EmbeddingService", return_value=mock_embedding_service),
+            patch("rag.core.VectorStoreService", side_effect=Exception("DB error")),
         ):
             with pytest.raises(RAGError, match="Failed to initialize RAG system"):
                 RAGSystem(embedding_api_key="test_key")
@@ -852,7 +851,7 @@ class TestRAGQuality:
 
         # Verify skill matching
         expected_skills = set(cv_data["skills"])
-        job_skills = set(["python", "django", "postgresql", "docker"])
+        job_skills = {"python", "django", "postgresql", "docker"}
         matching_skills = expected_skills.intersection(job_skills)
 
         assert len(best_match.matching_skills) == len(matching_skills)

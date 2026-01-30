@@ -1,15 +1,14 @@
 """Tests for monitoring metrics."""
 
 import pytest
-from prometheus_client.registry import REGISTRY
-
-from src.monitoring.metrics import (
+from monitoring.metrics import (
     API_LATENCY,
     CV_PROCESSED,
     LETTER_QUALITY,
     MATCH_SCORE,
     OFFERS_FETCHED,
 )
+from prometheus_client.registry import REGISTRY
 
 
 def test_metrics_registered():

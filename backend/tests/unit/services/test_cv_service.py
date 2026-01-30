@@ -10,8 +10,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
-
-from src.services.cv.cv_service import CVProcessingError, CVService
+from services.cv.cv_service import CVProcessingError, CVService
 
 
 class TestCVService:
@@ -20,7 +19,7 @@ class TestCVService:
     @pytest.fixture
     def mock_gemini_client(self):
         """Mock Gemini API client."""
-        with patch("src.services.cv.cv_service.genai") as mock_genai:
+        with patch("services.cv.cv_service.genai") as mock_genai:
             # Mock client
             mock_client = Mock()
             mock_models = Mock()

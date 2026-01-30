@@ -2,9 +2,8 @@ import os
 from unittest.mock import MagicMock
 
 import pytest
-
-from src.agents.orchestrator import UserSessionState, WriterAgent
-from src.services.letter_generator import LetterGeneratorService
+from agents.orchestrator import UserSessionState, WriterAgent
+from services.letter_generator import LetterGeneratorService
 
 
 class TestLetterQualityChain:

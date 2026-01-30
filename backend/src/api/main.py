@@ -8,13 +8,13 @@ import structlog
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from prometheus_client import make_asgi_app
-from starlette.middleware.base import BaseHTTPMiddleware
 
 # Import des métriques
-from src.monitoring.metrics import (
+from monitoring.metrics import (
     API_LATENCY,
 )
+from prometheus_client import make_asgi_app
+from starlette.middleware.base import BaseHTTPMiddleware
 
 # Configuration structlog pour logs structurés
 structlog.configure(

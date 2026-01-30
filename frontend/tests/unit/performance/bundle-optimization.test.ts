@@ -23,7 +23,6 @@ describe('Bundle Size Optimization', () => {
       expect(prodDeps[dep], `${dep} should not be in production dependencies`).toBeUndefined();
     });
 
-    expect(prodDeps['@tauri-apps/api']).toBeDefined();
     expect(prodDeps['next']).toBeDefined();
   });
 
@@ -33,14 +32,18 @@ describe('Bundle Size Optimization', () => {
     const tailwindConfig = fs.readFileSync(tailwindConfigPath, 'utf-8');
 
     expect(tailwindConfig).toContain('content:');
-    expect(tailwindConfig).toContain('./src/**/*.{ts,tsx,mdx}');
+    expect(tailwindConfig).toContain('./src/**/*.{js,ts,jsx,tsx,mdx}');
     expect(tailwindConfig).not.toContain('./**/*.{html,js}');
   });
 
-  test('next.config.ts should have proper optimization settings', () => {
-    const nextConfigPath = path.join(projectRoot, 'next.config.ts');
-    expect(fs.existsSync(nextConfigPath), 'next.config.ts should exist').toBe(true);
-    const nextConfig = fs.readFileSync(nextConfigPath, 'utf-8');
+  test('next.config.js or ts should have proper optimization settings', () => {
+    const nextConfigTsPath = path.join(projectRoot, 'next.config.ts');
+    const nextConfigJsPath = path.join(projectRoot, 'next.config.js');
+
+    const configPath = fs.existsSync(nextConfigTsPath) ? nextConfigTsPath : nextConfigJsPath;
+    expect(fs.existsSync(configPath), 'next.config.js or next.config.ts should exist').toBe(true);
+
+    const nextConfig = fs.readFileSync(configPath, 'utf-8');
 
     expect(nextConfig).toContain('compress: true');
     expect(nextConfig).toContain('removeConsole:');

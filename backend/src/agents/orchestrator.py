@@ -17,9 +17,8 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.graph import END, START, StateGraph
-
-from src.rag.core import RAGSystem
-from src.services.cache.cache_service import CacheService
+from rag.core import RAGSystem
+from services.cache.cache_service import CacheService
 
 # Configuration du logging
 logger = logging.getLogger(__name__)
@@ -451,7 +450,7 @@ class ResearcherAgent(BaseAgent):
         # Créer un ID unique pour le profil
         import hashlib
 
-        from src.rag.core import CVProfile
+        from rag.core import CVProfile
 
         profile_hash = hashlib.md5(
             json.dumps(profile_data, sort_keys=True).encode()

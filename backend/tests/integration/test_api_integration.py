@@ -2,9 +2,8 @@
 
 import time
 
+from api.main import app
 from fastapi.testclient import TestClient
-
-from src.api.main import app
 
 
 class TestAPIIntegration:

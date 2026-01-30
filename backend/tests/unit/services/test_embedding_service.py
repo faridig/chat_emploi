@@ -8,8 +8,7 @@ from unittest.mock import Mock, patch
 
 import numpy as np
 import pytest
-
-from src.services.embedding.embedding_service import (
+from services.embedding.embedding_service import (
     EmbeddingError,
     EmbeddingModel,
     EmbeddingService,
@@ -22,7 +21,7 @@ class TestEmbeddingService:
     @pytest.fixture
     def mock_gemini_client(self):
         """Mock Gemini API client for embeddings."""
-        with patch("src.services.embedding.embedding_service.genai") as mock_genai:
+        with patch("services.embedding.embedding_service.genai") as mock_genai:
             # Mock client
             mock_client = Mock()
             mock_models = Mock()

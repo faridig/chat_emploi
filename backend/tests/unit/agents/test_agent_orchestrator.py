@@ -7,8 +7,7 @@ from typing import Any
 from unittest.mock import Mock, patch
 
 import pytest
-
-from src.agents.orchestrator import (
+from agents.orchestrator import (
     AgentError,
     AgentOrchestrator,
     AgentTimeoutError,
@@ -49,14 +48,14 @@ class TestUserSessionState:
 class TestAgentOrchestrator:
     """Tests pour l'orchestrateur principal d'agents."""
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_orchestrator_initialization(self, mock_cache_service):
         """Test l'initialisation de l'orchestrateur."""
         # Mock CacheService pour éviter la connexion Redis
         mock_cache = Mock()
         mock_cache_service.return_value = mock_cache
 
-        with patch("src.agents.orchestrator.ChatGoogleGenerativeAI") as mock_llm:
+        with patch("agents.orchestrator.ChatGoogleGenerativeAI") as mock_llm:
             orchestrator = AgentOrchestrator(
                 gemini_api_key="test-key", session_persistence_path="/tmp/test_sessions"
             )
@@ -66,7 +65,7 @@ class TestAgentOrchestrator:
             assert orchestrator.sessions == {}
             assert mock_llm.called
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_create_session(self, mock_cache_service):
         """Test la création d'une nouvelle session."""
         # Mock CacheService pour éviter la connexion Redis
@@ -90,7 +89,7 @@ class TestAgentOrchestrator:
         assert "created_at" in session
         assert "updated_at" in session
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_get_session_existing(self, mock_cache_service):
         """Test la récupération d'une session existante."""
         # Mock CacheService pour éviter la connexion Redis
@@ -106,7 +105,7 @@ class TestAgentOrchestrator:
 
         assert session["user_id"] == "test-user"
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_get_session_not_found(self, mock_cache_service):
         """Test l'erreur quand une session n'existe pas."""
         # Mock CacheService pour éviter la connexion Redis
@@ -120,7 +119,7 @@ class TestAgentOrchestrator:
         with pytest.raises(SessionNotFoundError):
             orchestrator.get_session("non-existent-session")
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_update_session_step(self, mock_cache_service):
         """Test la mise à jour de l'étape de session."""
         # Mock CacheService pour éviter la connexion Redis
@@ -138,12 +137,12 @@ class TestAgentOrchestrator:
         assert session["current_step"] == "search"
         assert "updated_at" in session
 
-    @patch("src.agents.orchestrator.CacheService")
-    @patch("src.agents.orchestrator.StateGraph")
-    @patch("src.agents.orchestrator.CoachAgent")
-    @patch("src.agents.orchestrator.ResearcherAgent")
-    @patch("src.agents.orchestrator.WriterAgent")
-    @patch("src.agents.orchestrator.InterviewCoachAgent")
+    @patch("agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.StateGraph")
+    @patch("agents.orchestrator.CoachAgent")
+    @patch("agents.orchestrator.ResearcherAgent")
+    @patch("agents.orchestrator.WriterAgent")
+    @patch("agents.orchestrator.InterviewCoachAgent")
     def test_build_workflow_graph(
         self,
         mock_interview,
@@ -190,7 +189,7 @@ class TestAgentOrchestrator:
         # Verify compilation (called at least once - in constructor and possibly in method)
         mock_graph_instance.compile.assert_called()
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_execute_workflow_profile_step(self, mock_cache_service):
         """Test l'exécution du workflow pour l'étape profil."""
         # Mock CacheService pour éviter la connexion Redis
@@ -233,7 +232,7 @@ class TestAgentOrchestrator:
         assert result["current_step"] == "search"
         assert "profile_data" in result
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     @patch("time.time", side_effect=[0, 6])  # Simule un timeout
     def test_execute_workflow_timeout(self, mock_time, mock_cache_service):
         """Test le timeout lors de l'exécution du workflow."""
@@ -270,7 +269,7 @@ class TestAgentOrchestrator:
         # Vérifier que le graph a été appelé
         mock_graph.invoke.assert_called_once()
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_save_and_load_session(self, mock_cache_service, tmp_path):
         """Test la sauvegarde et le chargement d'une session."""
         # Mock CacheService pour éviter la connexion Redis
@@ -317,7 +316,7 @@ class TestCoachAgent:
         assert "coach" in agent.backstory.lower()
         assert agent.llm == mock_llm
 
-    @patch("src.agents.orchestrator.PromptTemplate")
+    @patch("agents.orchestrator.PromptTemplate")
     def test_coach_process_message(self, mock_prompt_template):
         """Test le traitement d'un message par l'agent Coach."""
         mock_llm = Mock()
@@ -385,7 +384,7 @@ class TestCoachAgent:
 class TestResearcherAgent:
     """Tests pour l'agent Researcher."""
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_researcher_agent_initialization(self, mock_cache_service):
         """Test l'initialisation de l'agent Researcher."""
         mock_llm = Mock()
@@ -403,7 +402,7 @@ class TestResearcherAgent:
         assert agent.llm == mock_llm
         assert agent.rag_system == mock_rag_system
 
-    @patch("src.agents.orchestrator.CacheService")
+    @patch("agents.orchestrator.CacheService")
     def test_researcher_search_offers(self, mock_cache_service):
         """Test la recherche d'offres par l'agent Researcher."""
         mock_llm = Mock()

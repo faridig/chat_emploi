@@ -10,8 +10,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from src.services.embedding.embedding_service import EmbeddingModel, EmbeddingService
-from src.services.vector_store.vector_store_service import (
+from services.embedding.embedding_service import EmbeddingModel, EmbeddingService
+from services.vector_store.vector_store_service import (
     CollectionType,
     VectorStoreService,
 )
@@ -116,7 +116,7 @@ class RAGSystem:
 
         except Exception as e:
             logging.error(f"Failed to initialize RAG system: {e}")
-            raise RAGError(f"Failed to initialize RAG system: {e}")
+            raise RAGError(f"Failed to initialize RAG system: {e}") from e
 
     def _initialize_collections(self):
         """Initialize vector store collections."""
@@ -190,7 +190,7 @@ class RAGSystem:
 
         except Exception as e:
             logging.error(f"Failed to index job offer {job_offer.id}: {e}")
-            raise RAGError(f"Failed to index job offer: {e}")
+            raise RAGError(f"Failed to index job offer: {e}") from e
 
     def index_cv_profile(self, cv_profile: CVProfile) -> str:
         """Index a CV profile in the vector store.
@@ -232,7 +232,7 @@ class RAGSystem:
 
         except Exception as e:
             logging.error(f"Failed to index CV profile {cv_profile.id}: {e}")
-            raise RAGError(f"Failed to index CV profile: {e}")
+            raise RAGError(f"Failed to index CV profile: {e}") from e
 
     def match_cv_with_jobs(
         self, cv_profile: CVProfile, max_results: int | None = None
@@ -328,7 +328,7 @@ class RAGSystem:
 
         except Exception as e:
             logging.error(f"Failed to match CV {cv_profile.id}: {e}")
-            raise RAGError(f"Failed to match CV with jobs: {e}")
+            raise RAGError(f"Failed to match CV with jobs: {e}") from e
 
     def _create_job_offer_text(self, job_offer: JobOffer) -> str:
         """Create text representation of a job offer for embedding.
@@ -448,7 +448,7 @@ class RAGSystem:
 
         except Exception as e:
             logging.error(f"Failed to batch index job offers: {e}")
-            raise RAGError(f"Failed to batch index job offers: {e}")
+            raise RAGError(f"Failed to batch index job offers: {e}") from e
 
     def get_collection_stats(self) -> dict[str, Any]:
         """Get statistics about the vector store collections.
@@ -472,4 +472,4 @@ class RAGSystem:
 
         except Exception as e:
             logging.error(f"Failed to get collection stats: {e}")
-            raise RAGError(f"Failed to get collection stats: {e}")
+            raise RAGError(f"Failed to get collection stats: {e}") from e

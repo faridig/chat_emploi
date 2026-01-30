@@ -9,8 +9,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
-
-from src.services.vector_store.vector_store_service import (
+from services.vector_store.vector_store_service import (
     CollectionType,
     VectorStoreService,
 )
@@ -29,7 +28,7 @@ class TestVectorStoreService:
     def mock_chromadb(self):
         """Mock ChromaDB client and components."""
         with patch(
-            "src.services.vector_store.vector_store_service.chromadb"
+            "services.vector_store.vector_store_service.chromadb"
         ) as mock_chroma:
             # Mock persistent client
             mock_client = Mock()

@@ -2,10 +2,7 @@
 
 import pytest
 import sqlalchemy.exc
-from sqlalchemy import create_engine, select
-from sqlalchemy.orm import Session
-
-from src.database.models import (
+from database.models import (
     AnonymizedProfile,
     Application,
     AuditLog,
@@ -15,6 +12,8 @@ from src.database.models import (
     JobOffer,
     User,
 )
+from sqlalchemy import create_engine, select
+from sqlalchemy.orm import Session
 
 
 @pytest.fixture

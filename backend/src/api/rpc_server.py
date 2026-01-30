@@ -9,8 +9,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 import structlog
-
-from src.api.jsonrpc_server import JSONRPCServer
+from api.jsonrpc_server import JSONRPCServer
 
 logger = structlog.get_logger(__name__)
 
@@ -41,7 +40,7 @@ def register_all_methods(server: JSONRPCServer, config: dict[str, Any]) -> None:
     """
     # Initialiser les services avec la configuration
     try:
-        from src.services.cv.cv_service import CVService
+        from services.cv.cv_service import CVService
 
         cv_service = CVService(api_key=config["gemini_api_key"])
 
@@ -56,7 +55,7 @@ def register_all_methods(server: JSONRPCServer, config: dict[str, Any]) -> None:
         logger.error("failed_to_initialize_cv_service", error=str(e))
 
     try:
-        from src.services.embedding.embedding_service import EmbeddingService
+        from services.embedding.embedding_service import EmbeddingService
 
         embedding_service = EmbeddingService(api_key=config["gemini_api_key"])
 
@@ -73,7 +72,7 @@ def register_all_methods(server: JSONRPCServer, config: dict[str, Any]) -> None:
         logger.error("failed_to_initialize_embedding_service", error=str(e))
 
     try:
-        from src.services.vector_store.vector_store_service import VectorStoreService
+        from services.vector_store.vector_store_service import VectorStoreService
 
         vector_store_service = VectorStoreService(
             persist_directory=config["chromadb_persist_directory"]
@@ -98,7 +97,7 @@ def register_all_methods(server: JSONRPCServer, config: dict[str, Any]) -> None:
         logger.error("failed_to_initialize_vector_store_service", error=str(e))
 
     try:
-        from src.services.cache.cache_service import CacheService
+        from services.cache.cache_service import CacheService
 
         redis_url = f"redis://{config['redis_host']}:{config['redis_port']}/{config['redis_db']}"
         cache_service = CacheService(redis_url=redis_url)
