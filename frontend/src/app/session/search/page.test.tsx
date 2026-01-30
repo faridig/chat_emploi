@@ -1,4 +1,3 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import SearchPage from './page';
 import { useSessionStore } from '@/stores/session-store';
@@ -9,7 +8,7 @@ vi.mock('@/stores/session-store');
 
 describe('SearchPage', () => {
   // Cast the mocked import to be used with mock return values
-  const mockedUseSessionStore = useSessionStore as vi.Mock;
+  const mockedUseSessionStore = useSessionStore as any;
 
   beforeEach(() => {
     // Reset mocks before each test

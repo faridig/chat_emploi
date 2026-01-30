@@ -14,6 +14,17 @@ jobs:
       matrix:
         python-version: ['3.11', '3.12']
 
+    services:
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,6 +48,10 @@ jobs:
           mypy src
 
       - name: Run unit tests with pytest
+        env:
+          REDIS_URL: redis://localhost:6379/0
+          TEST_MODE: "true"
+          SKIP_EXTERNAL_APIS: "true"
         run: |
           cd backend
           pytest tests/unit/ -v --cov=src --cov-report=xml --cov-report=term-missing

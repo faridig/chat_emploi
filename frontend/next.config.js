@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const path = require('path');
+import path from 'path';
 
 const nextConfig = {
   output: 'export',
@@ -32,4 +32,4 @@ const nextConfig = {
   turbopack: {},
 }
 
-module.exports = nextConfig
+export default nextConfig

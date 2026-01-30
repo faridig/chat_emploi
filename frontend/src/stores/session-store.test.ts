@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach } from 'vitest';
 import { useSessionStore, SessionState } from './session-store';
 import { act } from '@testing-library/react';
 

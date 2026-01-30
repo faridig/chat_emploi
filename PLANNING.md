@@ -107,7 +107,11 @@
   - ✅ Quality gates bloquent les PR avec échecs
   - ✅ Build cross-platform fonctionne localement
   - ✅ Tests Python passent (black, ruff, mypy, pytest)
-*Statut* : ✅ Terminé le 28 janvier 2026 (workflows validés, CI opérationnel)
+ *Statut* : ✅ Terminé le 28 janvier 2026 (workflows validés, CI opérationnel)
+   - ⚠️ Problèmes ESLint v9 détectés et corrigés le 30 janvier 2026
+   - ✅ Migration vers eslint.config.js complétée
+   - ✅ Types TypeScript pour Vitest/Playwright ajoutés
+   - ✅ Scripts de diagnostic et correction CI/CD créés
 
 ### 2.4 Monitoring & Métriques (Jour 3-4)
 *Feature* : Dashboard local Prometheus/Grafana + métriques qualité

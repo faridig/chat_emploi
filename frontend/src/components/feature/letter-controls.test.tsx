@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { LetterControls } from './letter-controls';
 import { useSessionStore } from '@/stores/session-store';
@@ -8,7 +7,7 @@ vi.mock('@/stores/session-store', () => ({
 }));
 
 describe('LetterControls', () => {
-  const mockedUseSessionStore = useSessionStore as vi.Mock;
+  const mockedUseSessionStore = useSessionStore as any;
   const setLetterOption = vi.fn();
 
   beforeEach(() => {
