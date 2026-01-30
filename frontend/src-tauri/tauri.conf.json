@@ -30,11 +30,20 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": ["dmg", "appimage", "msi"],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/128x128@2x.png"
     ]
+  },
+  "updater": {
+    "active": true,
+    "createUpdaterArtifacts": true,
+    "endpoints": [
+      "https://placeholder.update.server/updates.json"
+    ],
+    "dialog": true,
+    "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSV1R4RW5VOTVzZEdidnJrWFR5Q2FodE96T2t2cnZ2d2xMaVdzaEJrM0VzbitTcGh3N2tCZQpBVEFYam5iYlFzS0cK"
   }
 }

@@ -1,27 +1,89 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --foreground-rgb: 26, 32, 44;
-  --background-rgb: 248, 250, 252;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 26, 32, 44;
+    /* Palette Principale */
+    --primary: 212 72% 59%;     /* #4A90E2 -> HSL approx */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 52% 55%;   /* #50C878 -> HSL approx */
+    --secondary-foreground: 0 0% 100%;
+
+    --background: 210 20% 98%;  /* #F8FAFC */
+    --foreground: 222 47% 11%;  /* #1A202C */
+
+    --surface: 0 0% 100%;       /* #FFFFFF */
+    --surface-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%; /* #E2E8F0 */
+    --input: 214.3 31.8% 91.4%;
+    --ring: 212 72% 59%;
+
+    --radius: 0.75rem; /* 12px */
+
+    /* Custom Design System Colors (Hex fallback or usage) */
+    --color-primary: #4A90E2;
+    --color-primary-light: #7BB4F5;
+    --color-secondary: #50C878;
+    --color-secondary-light: #80E0A7;
+
+    --color-background: #F8FAFC;
+    --color-surface: #FFFFFF;
+    --color-border: #E2E8F0;
+
+    --color-text-primary: #1A202C;
+    --color-text-secondary: #718096;
+    --color-text-tertiary: #A0AEC0;
+
+    --color-success: #38A169;
+    --color-warning: #D69E2E;
+    --color-error: #E53E3E;
+    --color-info: #4299E1;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --surface: 222.2 84% 4.9%;
+    --surface-foreground: 210 40% 98%;
+
+    --primary: 212 72% 59%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 140 52% 55%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+  body {
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }

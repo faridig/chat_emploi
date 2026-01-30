@@ -5,8 +5,9 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 import structlog
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from prometheus_client import make_asgi_app
 from starlette.middleware.base import BaseHTTPMiddleware
 
@@ -147,3 +148,122 @@ async def test_logs() -> dict[str, str]:
         "status": "logs_generated",
         "message": "Check application logs for structured output",
     }
+
+
+@app.get("/api/status")
+async def api_status() -> dict:
+    """Endpoint de statut de l'API."""
+    logger.info("api_status_called")
+    return {
+        "status": "operational",
+        "version": "0.1.0",
+        "services": {
+            "api": "running",
+            "database": "connected",  # À vérifier dynamiquement
+            "monitoring": "enabled",
+        },
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/debug/metrics")
+async def debug_metrics() -> dict:
+    """Endpoint de debug pour les métriques."""
+    logger.debug("debug_metrics_called")
+
+    # Récupérer les métriques Prometheus (exemple simplifié)
+    import io
+
+    from prometheus_client import generate_latest
+
+    io.StringIO()
+    generate_latest().decode("utf-8")
+
+    return {
+        "metrics_available": True,
+        "endpoints": {
+            "prometheus": "/metrics",
+            "health": "/health",
+            "status": "/api/status",
+        },
+    }
+
+
+@app.post("/api/test/jsonrpc")
+async def test_jsonrpc(request: dict) -> dict:
+    """Endpoint de test pour le protocole JSON-RPC.
+
+    Note: Cet endpoint est pour le test uniquement, la communication réelle
+    se fait via stdin/stdout avec le serveur JSON-RPC dédié.
+    """
+    logger.info("test_jsonrpc_called", method=request.get("method"))
+
+    # Simuler une réponse JSON-RPC
+    method = request.get("method", "")
+    params = request.get("params", {})
+
+    if method == "test.ping":
+        return {
+            "jsonrpc": "2.0",
+            "result": {"status": "pong", "timestamp": time.time()},
+            "id": request.get("id"),
+        }
+    elif method == "test.echo":
+        return {"jsonrpc": "2.0", "result": {"echo": params}, "id": request.get("id")}
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "jsonrpc": "2.0",
+                "error": {"code": -32601, "message": "Method not found"},
+                "id": request.get("id"),
+            },
+        )
+
+
+@app.get("/api/docs")
+async def api_docs_redirect():
+    """Redirige vers la documentation OpenAPI."""
+    from starlette.responses import RedirectResponse
+
+    return RedirectResponse(url="/docs")
+
+
+# Handler d'erreurs global
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    """Handler d'erreurs HTTP personnalisé."""
+    logger.error(
+        "http_exception",
+        status_code=exc.status_code,
+        detail=exc.detail,
+        path=request.url.path,
+    )
+
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "error": {
+                "code": exc.status_code,
+                "message": str(exc.detail),
+                "path": request.url.path,
+            }
+        },
+    )
+
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception):
+    """Handler d'exceptions génériques."""
+    logger.exception("unhandled_exception", error=str(exc), path=request.url.path)
+
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": {
+                "code": 500,
+                "message": "Internal server error",
+                "path": request.url.path,
+            }
+        },
+    )

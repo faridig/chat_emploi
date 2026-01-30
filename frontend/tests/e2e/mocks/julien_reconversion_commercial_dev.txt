@@ -1,0 +1,54 @@
+JULIEN DUPONT
+Ancien Commercial en Reconversion vers le Développement Web
+
+EXPÉRIENCE PROFESSIONNELLE
+Commercial B2B - Tech Solutions SA (2019-2024)
+- Développement du portefeuille clients (+30% en 3 ans)
+- Présentation de solutions techniques aux clients
+- Formation continue en développement web (Python, JavaScript)
+
+Commercial Junior - Entreprise Locale (2017-2019)
+- Prospection téléphonique et emailing
+- Participation aux salons professionnels
+- Suivi clientèle
+
+COMPÉTENCES TECHNIQUES
+- Python (niveau intermédiaire) - formation en cours
+- HTML5 / CSS3 (bonnes bases)
+- JavaScript (notions)
+- Git & GitHub (débutant)
+- SQL (notions)
+
+COMPÉTENCES TRANSVERSALES
+- Communication et relation client
+- Gestion de projet agile
+- Négociation commerciale
+- Présentation et pitch
+- Travail en équipe
+
+FORMATION
+Formation Développeur Web - OpenClassrooms (2024-en cours)
+- Projets concrets: site e-commerce, API REST, application React
+- Technologies: Python, Django, JavaScript, React, PostgreSQL
+
+Licence Commerce International - Université Paris (2016-2019)
+- Spécialisation: commerce digital
+- Projet de fin d'études: étude de marché pour une startup tech
+
+Certifications
+- Google Analytics Individual Qualification
+- HubSpot Inbound Marketing
+
+LANGUES
+- Français: langue maternelle
+- Anglais: professionnel (TOEIC 800)
+- Espagnol: notions
+
+CENTRES D'INTÉRÊT
+- Développement web: projets personnels sur GitHub
+- Tech communities: participation aux meetups développeurs
+- Lecture: livres sur l'IA et les nouvelles technologies
+- Sport: course à pied, randonnée
+
+OBJECTIF PROFESSIONNEL
+Je recherche un poste de développeur web junior dans une entreprise qui valorise l'apprentissage continu et qui est ouverte aux profils en reconversion. Mon expérience commerciale m'a appris à comprendre les besoins clients et à travailler en équipe, compétences que je souhaite mettre au service du développement de solutions techniques innovantes.

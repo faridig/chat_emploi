@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lettre de Motivation - {{ candidate_name }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm;
+        }
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #333;
+        }
+        .header {
+            margin-bottom: 2cm;
+            display: flex;
+            justify-content: space-between;
+        }
+        .sender-info {
+            float: left;
+            width: 45%;
+        }
+        .recipient-info {
+            float: right;
+            width: 45%;
+            text-align: left;
+            margin-top: 1cm;
+        }
+        .clear {
+            clear: both;
+        }
+        .date {
+            text-align: right;
+            margin-top: 2cm;
+            margin-bottom: 1cm;
+        }
+        .object {
+            font-weight: bold;
+            margin-bottom: 1cm;
+        }
+        .content {
+            text-align: justify;
+        }
+        .signature {
+            margin-top: 2cm;
+            text-align: right;
+            margin-right: 2cm;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 8pt;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="sender-info">
+            <strong>{{ candidate_name }}</strong><br>
+            {{ candidate_email }}<br>
+            {{ candidate_phone }}<br>
+            {{ candidate_address }}
+        </div>
+        <div class="recipient-info">
+            <strong>{{ company_name }}</strong><br>
+            A l'attention du Responsable Recrutement<br>
+            {{ company_address }}
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div class="date">
+        À {{ city }}, le {{ date }}
+    </div>
+
+    <div class="object">
+        Objet : Candidature au poste de {{ job_title }}
+    </div>
+
+    <div class="content">
+        {{ content | safe }}
+    </div>
+
+    <div class="signature">
+        {{ candidate_name }}
+    </div>
+
+    <!-- Pied de page optionnel si besoin -->
+</body>
+</html>

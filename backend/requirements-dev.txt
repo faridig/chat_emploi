@@ -9,3 +9,4 @@ mypy>=1.9.0
 pre-commit>=3.0.0
 ipython>=8.0.0
 jupyter>=1.0.0
+weasyprint>=62.0  # Ajouté pour les tests de génération PDF

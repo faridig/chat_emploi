@@ -1,9 +1,9 @@
-name: Release
+name: 'Release Chat Emploi'
 
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*' # Déclenché sur la création d'un tag (ex: v1.0.0)
 
 jobs:
   publish-tauri:
@@ -17,59 +17,61 @@ jobs:
             args: '--target aarch64-apple-darwin'
           - platform: 'macos-latest'
             args: '--target x86_64-apple-darwin'
-          - platform: 'ubuntu-latest'
+          - platform: 'ubuntu-22.04' # Utilisation de la LTS pour la stabilité
             args: ''
           - platform: 'windows-latest'
             args: ''
-    
+
     runs-on: ${{ matrix.platform }}
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Install system dependencies (Ubuntu)
-        if: matrix.platform == 'ubuntu-latest'
+        if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
-      
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
+
       - name: Setup Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
-      
+
       - name: Cache Rust dependencies
         uses: swatinem/rust-cache@v2
         with:
           workspaces: 'frontend/src-tauri -> target'
-      
-      - name: Setup Python backend
+
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
           cache: 'pip'
-      
+          cache-dependency-path: 'backend/pyproject.toml'
+
       - name: Install backend dependencies
-        run: |
-          cd backend
-          pip install .
-      
+        run: pip install .
+        working-directory: ./backend
+
       - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
-      
+        run: npm install
+        working-directory: ./frontend
+
       - name: Build and publish Tauri application
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          projectPath: ./frontend
           tagName: 'v__VERSION__'
           releaseName: 'Chat Emploi v__VERSION__'
           releaseBody: 'See assets to download this version.'
