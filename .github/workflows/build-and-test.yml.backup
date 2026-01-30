@@ -73,7 +73,7 @@ jobs:
       - name: Run ESLint
         run: |
           cd frontend
-          npx eslint src/ --ext .ts,.tsx
+          npm run lint
 
       - name: Run unit tests with Vitest
         run: |

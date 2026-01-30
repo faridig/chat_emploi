@@ -37,7 +37,7 @@ export function LazyImage({
   const [currentSrc, setCurrentSrc] = useState(placeholder);
   const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const observerRef = useRef<IntersectionObserver>();
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (!src || hasError) return;

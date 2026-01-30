@@ -34,10 +34,10 @@ const bubbleVariants = cva(
 )
 
 export interface ChatMessageProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof chatMessageVariants> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
   avatar?: React.ReactNode
   content: string | React.ReactNode
+  role?: "user" | "agent"
   timestamp?: string
 }
 
