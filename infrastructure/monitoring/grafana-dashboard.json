@@ -1,0 +1,138 @@
+{
+  "dashboard": {
+    "title": "Chat Emploi - Monitoring MVP",
+    "description": "Dashboard de monitoring pour l'application Chat Emploi",
+    "tags": ["chat-emploi", "monitoring", "mvp"],
+    "style": "dark",
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Performance API",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+        "targets": [
+          {
+            "expr": "rate(api_latency_seconds_sum[5m]) / rate(api_latency_seconds_count[5m])",
+            "legendFormat": "Latence moyenne ({{endpoint}})",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          {"format": "s", "label": "Secondes", "min": 0},
+          {"format": "short", "min": null, "max": null}
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Utilisation de l'application",
+        "type": "stat",
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 8},
+        "targets": [
+          {
+            "expr": "cv_processed",
+            "legendFormat": "CV traités",
+            "refId": "A",
+            "instant": true
+          }
+        ],
+        "valueMaps": [],
+        "sparkline": {"show": true}
+      },
+      {
+        "id": 3,
+        "title": "Offres récupérées",
+        "type": "stat",
+        "gridPos": {"h": 4, "w": 6, "x": 6, "y": 8},
+        "targets": [
+          {
+            "expr": "offers_fetched",
+            "legendFormat": "Offres",
+            "refId": "A",
+            "instant": true
+          }
+        ],
+        "valueMaps": [],
+        "sparkline": {"show": true}
+      },
+      {
+        "id": 4,
+        "title": "Lettres générées",
+        "type": "stat",
+        "gridPos": {"h": 4, "w": 6, "x": 12, "y": 8},
+        "targets": [
+          {
+            "expr": "letters_generated",
+            "legendFormat": "Lettres",
+            "refId": "A",
+            "instant": true
+          }
+        ],
+        "valueMaps": [],
+        "sparkline": {"show": true}
+      },
+      {
+        "id": 5,
+        "title": "Qualité Matching",
+        "type": "gauge",
+        "gridPos": {"h": 6, "w": 6, "x": 0, "y": 12},
+        "targets": [
+          {
+            "expr": "match_score_current",
+            "legendFormat": "Score matching",
+            "refId": "A",
+            "instant": true
+          }
+        ],
+        "min": 0,
+        "max": 1
+      },
+      {
+        "id": 6,
+        "title": "Utilisation CPU",
+        "type": "gauge",
+        "gridPos": {"h": 6, "w": 6, "x": 6, "y": 12},
+        "targets": [
+          {
+            "expr": "cpu_usage_percent",
+            "legendFormat": "CPU %",
+            "refId": "A",
+            "instant": true
+          }
+        ],
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": 7,
+        "title": "Utilisation Mémoire",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+        "targets": [
+          {
+            "expr": "memory_usage_bytes / 1024 / 1024",
+            "legendFormat": "Mémoire ({{type}}) MB",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          {"format": "bytes", "label": "Mémoire (MB)", "min": 0},
+          {"format": "short", "min": null, "max": null}
+        ]
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"],
+      "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
+    },
+    "schemaVersion": 27,
+    "version": 1,
+    "refresh": "10s"
+  },
+  "folderUid": "chat-emploi",
+  "overwrite": true
+}
