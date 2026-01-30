@@ -836,18 +836,31 @@
 
 ### 7.5 RELEASE v1.0.0 ✅ TERMINÉ LE 30 JANVIER 2026
 **Final Release** : Lancement officiel de la première version stable
-- ✅ Tag Git v1.0.0 créé et poussé
-- ✅ Workflow GitHub Actions déclenché pour build cross-platform
+- ✅ Tag Git v1.0.0 créé et poussé (commit 1bd782c)
+- ✅ Workflow GitHub Actions déclenché pour build cross-platform (en cours)
 - ✅ Release notes complètes mises à jour (RELEASE_NOTES.md)
 - ✅ Documentation utilisateur finale validée
 - ✅ Checklist release complétée (RELEASE_CHECKLIST.md)
+- ✅ Nettoyage Git: suppression node_modules/, .next/, .db du staging
+- ✅ .gitignore mis à jour avec règles complètes
 
 **Détails**:
-- **Tag**: v1.0.0 créé sur commit 8629c0e
-- **Builds**: Windows (.msi), macOS (.dmg Intel/ARM), Linux (.AppImage)
-- **Distribution**: Release GitHub avec assets téléchargeables
+- **Tag**: v1.0.0 créé sur commit 1bd782c
+- **Builds**: Windows (.msi), macOS (.dmg Intel/ARM), Linux (.AppImage) - en cours
+- **Distribution**: Release GitHub avec assets téléchargeables - en cours
 - **Auto-update**: Configuration Tauri activée
-- **Statut**: MVP v1.0.0 disponible pour les utilisateurs
+- **Statut**: MVP v1.0.0 en cours de build et publication
+- **Note**: 56 erreurs B904 (style warnings) à corriger dans v1.0.1
+
+**Workflow Status** (30 janvier 2026, 12:54):
+- ✅ Commit poussé avec succès (1bd782c)
+- ✅ Tag v1.0.0 poussé avec succès
+- 🔄 Workflow GitHub Actions en cours d'exécution:
+  - Job 1: Windows (.msi) - en cours
+  - Job 2: Linux (.AppImage) - en cours
+  - Job 3: macOS ARM (.dmg) - en cours
+  - Job 4: macOS Intel (.dmg) - en cours
+- 📊 Run ID: 21514928754
 
 ### 7.2 Revue de Code Automatisée
 - **Chaque commit** : pre-commit hooks (format, lint, tests unitaires)
