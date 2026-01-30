@@ -5,6 +5,8 @@ from pathlib import Path
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
+from src.database.models import Base
+
 # Ajouter le chemin du projet
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
@@ -20,7 +22,6 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from src.database.models import Base
 
 target_metadata = Base.metadata
 

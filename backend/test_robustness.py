@@ -65,7 +65,7 @@ def test_rate_limiting_basic():
     start_time = time.time()
     request_count = 0
 
-    for i in range(10):
+    for _ in range(10):
         response = client.get("/health")
         if response.status_code == 200:
             request_count += 1

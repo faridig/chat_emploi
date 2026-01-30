@@ -8,11 +8,11 @@ from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
+from src.database.models import AnonymizedProfile, Application, Base, JobOffer, User
+
 # Ajouter le chemin du projet
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
-
-from src.database.models import AnonymizedProfile, Application, Base, JobOffer, User
 
 
 def load_test_data():

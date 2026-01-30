@@ -229,7 +229,7 @@ def test_system_throughput():
     start_time = time.time()
 
     successful_requests = 0
-    for i in range(num_requests):
+    for _ in range(num_requests):
         response = client.get("/health")
         if response.status_code == 200:
             successful_requests += 1

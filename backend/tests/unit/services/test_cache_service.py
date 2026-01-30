@@ -78,7 +78,7 @@ class TestCacheService:
         # Check arguments
         call_args = redis_mock.Redis.from_url.call_args
         assert call_args[0][0] == "redis://localhost:6379"
-        assert call_args[1]["decode_responses"] == True
+        assert call_args[1]["decode_responses"]
 
     def test_set_get_string(self, cache_service, mock_redis):
         """Test setting and getting string values."""

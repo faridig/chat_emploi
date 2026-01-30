@@ -546,7 +546,7 @@ class TestRAGSystemMatching:
         self, rag_system, sample_cv_profile, mock_vector_store
     ):
         """Test match_cv_with_jobs with custom max_results."""
-        results = rag_system.match_cv_with_jobs(sample_cv_profile, max_results=5)
+        rag_system.match_cv_with_jobs(sample_cv_profile, max_results=5)
 
         # Verify query was called with custom max_results
         call_args = mock_vector_store.query_similarity.call_args

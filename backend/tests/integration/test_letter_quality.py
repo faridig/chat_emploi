@@ -127,14 +127,9 @@ class TestLetterQualityChain:
         # Ce test vérifie que le contenu généré respecte certaines règles
         # Par exemple, ne contient pas de placeholders non remplacés
 
-        content = """
-        Madame, Monsieur,
-        Je postule pour [NOM_POSTE].
-        """
-
         # Simple heuristic check
         placeholders = ["[NOM_POSTE]", "[ENTREPRISE]", "[VOTRE_NOM]"]
-        for p in placeholders:
+        for _ in placeholders:
             # Ici on s'attend à ce que ça échoue si le placeholder est présent
             # C'est un test "négatif" sur le contenu brut si on avait un vrai LLM
             pass

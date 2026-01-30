@@ -23,7 +23,6 @@ class TestCVService:
             # Mock client
             mock_client = Mock()
             mock_models = Mock()
-            mock_generate_content = Mock()
 
             # Setup mocks
             mock_client.models = mock_models

@@ -39,7 +39,7 @@ class TestUserSessionState:
             "session_metrics": dict[str, float],
         }
 
-        for field, field_type in expected_fields.items():
+        for field, _ in expected_fields.items():
             assert field in annotations
             # Note: Pour les types génériques, on vérifie juste la présence
             assert annotations[field] is not None
@@ -174,7 +174,7 @@ class TestAgentOrchestrator:
         )
 
         # Build graph
-        graph = orchestrator._build_workflow_graph()
+        orchestrator._build_workflow_graph()
 
         # Verify graph construction
         mock_state_graph.assert_called_with(UserSessionState)
@@ -262,7 +262,7 @@ class TestAgentOrchestrator:
 
         # Note: Le timeout n'est pas implémenté dans execute_workflow
         # On teste juste que l'exécution fonctionne
-        result = orchestrator.execute_workflow(
+        orchestrator.execute_workflow(
             session_id=session_id, user_message="Test message"
         )
 

@@ -25,7 +25,6 @@ class TestEmbeddingService:
             # Mock client
             mock_client = Mock()
             mock_models = Mock()
-            mock_embed_content = Mock()
 
             # Mock response structure
             mock_embedding_response = Mock()

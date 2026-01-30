@@ -20,16 +20,17 @@ const nextConfig = {
     optimizeCss: true,
     scrollRestoration: true,
   },
-  // Configuration explicite des alias pour Webpack
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname, 'src'),
+  // Configuration webpack pour CI/CD
+  webpack: (config, { isServer }) => {
+    // Pour CI/CD, s'assurer que les chemins sont résolus
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      path: false,
     };
+
     return config;
   },
-  // Configuration Turbopack minimale pour autoriser la cohabitation avec webpack config
-  turbopack: {},
 }
 
 export default nextConfig
