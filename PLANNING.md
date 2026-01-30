@@ -845,22 +845,28 @@
 - ✅ .gitignore mis à jour avec règles complètes
 
 **Détails**:
-- **Tag**: v1.0.0 créé sur commit 1bd782c
+- **Tag**: v1.0.0 créé sur commit 5ab95a4 (correction configuration Tauri)
 - **Builds**: Windows (.msi), macOS (.dmg Intel/ARM), Linux (.AppImage) - en cours
 - **Distribution**: Release GitHub avec assets téléchargeables - en cours
-- **Auto-update**: Configuration Tauri activée
+- **Auto-update**: Configuration Tauri activée (dans plugins section)
 - **Statut**: MVP v1.0.0 en cours de build et publication
 - **Note**: 56 erreurs B904 (style warnings) à corriger dans v1.0.1
 
-**Workflow Status** (30 janvier 2026, 12:54):
-- ✅ Commit poussé avec succès (1bd782c)
-- ✅ Tag v1.0.0 poussé avec succès
-- 🔄 Workflow GitHub Actions en cours d'exécution:
+**Workflow Status** (30 janvier 2026, 12:59):
+- ✅ Commit poussé avec succès (5ab95a4) - Correction configuration Tauri
+- ✅ Tag v1.0.0 mis à jour avec correction
+- 🔄 Nouveau workflow GitHub Actions en cours d'exécution:
   - Job 1: Windows (.msi) - en cours
   - Job 2: Linux (.AppImage) - en cours
   - Job 3: macOS ARM (.dmg) - en cours
   - Job 4: macOS Intel (.dmg) - en cours
-- 📊 Run ID: 21514928754
+- 📊 Run ID: 21515064785
+- ⚠️ Workflow précédent échoué (21514928754) - Configuration Tauri incorrecte
+- ✅ Problème identifié et corrigé:
+  - `devPath` → `devUrl`
+  - `distDir` → `frontendDist`
+  - `updater` déplacé dans `plugins` section
+  - `withGlobalTauri` supprimé de `build` section
 
 ### 7.2 Revue de Code Automatisée
 - **Chaque commit** : pre-commit hooks (format, lint, tests unitaires)
