@@ -1,7 +1,7 @@
 {
   "productName": "Chat Emploi",
   "version": "0.1.0",
-  "identifier": "com.chatemploi.app",
+  "identifier": "com.chatemploi",
   "build": {
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
