@@ -3,10 +3,7 @@
  * Module 11 : Cool Down & Polish
  */
 
-import { describe, test, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { WebVitals } from '@/components/performance/WebVitals';
-import { useReportWebVitals } from 'next/web-vitals';
 
 // Mock de next/web-vitals
 vi.mock('next/web-vitals', () => ({

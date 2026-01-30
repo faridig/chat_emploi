@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom'
-import { vi } from 'vitest'
 
 // Mock ResizeObserver for Radix UI components
 const ResizeObserverMock = vi.fn(() => ({

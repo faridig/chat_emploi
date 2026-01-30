@@ -8,8 +8,6 @@
  * 3. Léa (jeune diplômée) : CV léger → construction profil
  */
 
-import { test, expect, Page } from '@playwright/test';
-import { personas, mockCVs, TestMetrics, testConfig } from './personas';
 
 // Métriques collectées pendant les tests
 const collectedMetrics: TestMetrics[] = [];

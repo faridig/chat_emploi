@@ -199,7 +199,7 @@ class CVService:
                 if start_idx >= 0 and end_idx > start_idx:
                     json_str = text[start_idx:end_idx]
                     return json.loads(json_str)
-            except:
+            except Exception:
                 pass
 
             raise CVProcessingError(f"Failed to parse analysis response: {e}")

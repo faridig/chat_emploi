@@ -85,6 +85,7 @@ select = [
 ignore = [
     "E501",  # line too long, handled by black
     "B008",  # do not perform function calls in argument defaults
+    "B904",  # Within an `except` clause, raise exceptions with `raise ... from err`
 ]
 
 [tool.mypy]

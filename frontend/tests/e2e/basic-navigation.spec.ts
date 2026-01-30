@@ -1,4 +1,3 @@
-import { test, expect } from '@playwright/test';
 
 /**
  * Tests de navigation de base pour vérifier que toutes les pages principales sont accessibles

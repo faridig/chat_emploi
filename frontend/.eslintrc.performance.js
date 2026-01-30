@@ -3,7 +3,7 @@
  * Module 11 : Cool Down & Polish
  */
 
-module.exports = {
+export default {
   extends: [
     'next/core-web-vitals',
   ],

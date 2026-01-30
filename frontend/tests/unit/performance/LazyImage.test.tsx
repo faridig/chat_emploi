@@ -3,8 +3,6 @@
  * Module 11 : Cool Down & Polish
  */
 
-import { describe, test, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
 import { LazyImage } from '@/components/performance/LazyImage';
 
 // Mock IntersectionObserver

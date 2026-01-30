@@ -3,7 +3,6 @@
  * Module 11 : Cool Down & Polish
  */
 
-import { describe, test, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { OptimizedButton } from '@/components/performance/OptimizedButton';
 
