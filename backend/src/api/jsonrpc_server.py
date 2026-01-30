@@ -111,7 +111,7 @@ class JSONRPCServer:
         # Vérifier les params (optionnels mais doivent être array ou object s'ils existent)
         if "params" in request:
             params = request["params"]
-            if not isinstance(params, (list, dict)):
+            if not isinstance(params, list | dict):
                 return JSONRPCError(
                     code=self.INVALID_REQUEST,
                     message="Invalid Request: 'params' must be an array or object",

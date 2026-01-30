@@ -8,7 +8,7 @@ from typing import Any
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 try:
-    from weasyprint import CSS, HTML
+    from weasyprint import HTML
 
     WEASYPRINT_AVAILABLE = True
 except ImportError:

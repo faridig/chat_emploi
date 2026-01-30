@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
   output: 'export',
   images: {
@@ -18,10 +20,16 @@ const nextConfig = {
     optimizeCss: true,
     scrollRestoration: true,
   },
-  // Configuration Turbopack pour éviter les conflits avec webpack
-  turbopack: {
-    // Configuration minimale pour Turbopack
+  // Configuration explicite des alias pour Webpack
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, 'src'),
+    };
+    return config;
   },
+  // Configuration Turbopack minimale pour autoriser la cohabitation avec webpack config
+  turbopack: {},
 }
 
 module.exports = nextConfig

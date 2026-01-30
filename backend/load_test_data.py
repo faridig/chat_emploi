@@ -1,14 +1,16 @@
 """Script de chargement des données de test réalistes."""
 
 import sys
+import uuid
+from datetime import date, datetime, timedelta
 from pathlib import Path
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
 
 # Ajouter le chemin du projet
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
 
 from src.database.models import AnonymizedProfile, Application, Base, JobOffer, User
 
@@ -32,8 +34,6 @@ def load_test_data():
         session.commit()
 
         # Créer des utilisateurs de test
-        import uuid
-
         users = [
             User(
                 id=str(uuid.uuid4()),
@@ -116,8 +116,6 @@ Recherche: poste de direction marketing""",
         session.commit()
 
         # Créer des offres d'emploi réalistes
-        from datetime import date, datetime, timedelta
-
         job_offers = [
             JobOffer(
                 id="FT12345",

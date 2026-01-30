@@ -1194,7 +1194,7 @@ class AgentOrchestrator:
             session["error"] = str(e)
             session["updated_at"] = datetime.now().isoformat()
 
-            raise AgentError("orchestrator", f"Workflow execution failed: {e}")
+            raise AgentError("orchestrator", f"Workflow execution failed: {e}") from e
 
     def save_session(self, session_id: str):
         """Sauvegarde une session sur le disque."""
