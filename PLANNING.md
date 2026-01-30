@@ -845,35 +845,20 @@
 - ✅ .gitignore mis à jour avec règles complètes
 
 **Détails**:
-- **Tag**: v1.0.0 créé sur commit 68e30fa (correction configuration Next.js)
+- **Tag**: v1.0.0 créé sur commit ed95dff (correction alias Next.js)
 - **Builds**: Windows (.msi), macOS (.dmg Intel/ARM), Linux (.AppImage) - en cours
 - **Distribution**: Release GitHub avec assets téléchargeables - en cours
 - **Auto-update**: Configuration Tauri activée (dans plugins section)
 - **Statut**: MVP v1.0.0 en cours de build et publication
 - **Note**: 56 erreurs B904 (style warnings) à corriger dans v1.0.1
 
-**Workflow Status** (30 janvier 2026, 13:14):
-- ✅ Commit poussé avec succès (68e30fa) - Correction configuration Next.js
-- ✅ Tag v1.0.0 mis à jour avec correction Next.js
+**Workflow Status** (30 janvier 2026, 14:35):
+- ✅ Commit poussé avec succès (ed95dff) - Correction finale alias Next.js
+- ✅ Tag v1.0.0 mis à jour
 - 🔄 Nouveau workflow GitHub Actions en cours d'exécution:
-  - Job 1: Windows (.msi) - en cours
-  - Job 2: Linux (.AppImage) - en cours
-  - Job 3: macOS ARM (.dmg) - en cours
-  - Job 4: macOS Intel (.dmg) - en cours
-- 📊 Run ID: 21515440073
-- ⚠️ Workflow précédent échoué (21515199193) - Module not found: @/lib/utils (alias Next.js)
-- ✅ Problèmes identifiés et corrigés:
-  1. **Configuration Tauri**:
-     - `devPath` → `devUrl`
-     - `distDir` → `frontendDist`
-     - `updater` déplacé dans `plugins` section
-     - `withGlobalTauri` supprimé de `build` section
-  2. **Node.js version**: 18 → 20 dans workflow (Next.js 16.1.6 requiert >=20.9.0)
-  3. **Bundle identifier**: `com.chatemploi.app` → `com.chatemploi` (évite conflit .app sur macOS)
-  4. **Configuration Next.js**:
-     - `next.config.ts` → `next.config.js` (problèmes TypeScript en CI)
-     - Ajout configuration `turbopack: {}` pour éviter conflits webpack
-     - Build local fonctionnel confirmé
+  - 📊 Run ID: 21519387606
+- ⚠️ Workflow précédent échoué (21515440073) - Erreur alias `@/lib/utils`
+- ✅ Correction appliquée: Configuration hybride Webpack/Turbopack dans `next.config.js` pour assurer la résolution des alias dans tous les environnements CI.
 
 ### 7.2 Revue de Code Automatisée
 - **Chaque commit** : pre-commit hooks (format, lint, tests unitaires)
